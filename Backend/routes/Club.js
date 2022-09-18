@@ -15,18 +15,21 @@ const storage = multer.diskStorage({
   });
 const upload = multer({ storage: storage });
 
+//fetching all the club info
 router.get('/get',(req, res) => {
     ClubModel.find()
         .then(club => res.json(club))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+//dynamic end point for different clubs 
 router.get("/:club_name",(req,res)=>{
- const club_name = req.params.club_name
- res.render("index.hbs",{name:club_name});  
+    const club_name = req.params.club_name
+    res.render("index.hbs",{name:club_name});  
 });
 
 
+//fetching club info with its name 
 router.get('/get/:club_name',(req, res) => {
     const club_name = req.params.club_name
     console.log(club_name)
@@ -35,8 +38,11 @@ router.get('/get/:club_name',(req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
+//adding new clubs to the database 
 router.post('/add', upload.array('ClubImg', 10), (req, res, next) => {
-    console.log(req.body)
+    // console.log(req.body)
+
+    //required attributes
     var obj = {
       ClubName: req.body.ClubName,
       ClubDesc: req.body.ClubDesc,
@@ -44,6 +50,7 @@ router.post('/add', upload.array('ClubImg', 10), (req, res, next) => {
       ClubMemberNames:[],
       ClubMemberDesign:[],
     }
+    //optional attributes
     if(req.body.ClubWebsite != undefined){
         obj.ClubWebsite = req.body.ClubWebsite;
     }
@@ -60,7 +67,7 @@ router.post('/add', upload.array('ClubImg', 10), (req, res, next) => {
     for( let i =0 ; i< req.files.length ; i++){
         obj.ClubImg.push(path.join(__dirname + '\\..\\uploads\\club\\' + req.files[i].filename))
     }
-    console.log(obj)
+    // console.log(obj)
     ClubModel.create(obj, (err, item) => {
         if (err) {
             console.log(err);
