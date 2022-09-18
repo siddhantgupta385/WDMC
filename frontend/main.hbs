@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="club_list">
+
+       
+
+    </div>
+
+</body>
+
+<script>
+
+    const link = `http://localhost:8080/club/get`
+    console.log(link)
+    fetch(link)
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        const club_list_div = document.getElementById("club_list");
+
+        for( let i = 0 ; i<data.length ; i++){
+
+            const club_name = document.createElement("a");
+            club_name.href = "club/" + data[i].ClubName;
+            club_name.innerHTML = data[i].ClubName;
+            club_list_div.appendChild(club_name)
+            const br = document.createElement("br");
+            club_list_div.appendChild(br)
+
+        }
+    })
+    
+</script>
+</html>
