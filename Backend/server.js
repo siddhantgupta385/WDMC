@@ -36,8 +36,8 @@ app.engine('hbs',handlebars.engine({
 }));
 
 app.set('view engine','hbs');
-app.set('views',path.join(__dirname,'frontend/'));
-app.use(express.static(path.join(__dirname,"frontend/")));
+app.set('views',path.join(__dirname,'../frontend/'));
+app.use(express.static(path.join(__dirname,"../frontend/")));
 
 Handlebars.registerHelper('ifNotEquals', function(arg1, arg2, options) {
   return (arg1 != arg2) ? options.fn(this) : options.inverse(this);
