@@ -6,11 +6,13 @@ const Handlebars = require("handlebars");
 var path = require('path');
 const handlebars = require("express-handlebars");
 const clubRouter = require('./routes/Club.js');
+
+const scholershipRouter=require('./routes/Scholership.js')
 require('dotenv').config();
 const hbs = require('hbs')
 
 const app = express();
-const port = process.env.PORT || 6000;
+const port = process.env.PORT || 8080;
 
 app.use(cors());
 app.use(express.json());
@@ -18,7 +20,7 @@ app.use(express.json());
 
 // mongo db connection
 const uri = process.env.ATLAS_URI;
-
+ 
 mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -50,15 +52,33 @@ Handlebars.registerHelper('ifNotEquals', function(arg1, arg2, options) {
     return (arg1 != arg2) ? options.fn(this) : options.inverse(this);
 });
 
+                  /*  END POINTS */
+// Clubs End Points
+    app.use('/club', clubRouter);
+    app.get("/", (req, res) =>{
+      res.render("main.hbs")
+    })
+ 
+    
+    // Admin End Points
+    app.get("/Club_form",(req,res)=>{
+      res.render("club_form.hbs")
+    });
+    app.get("/Club_update_form",(req,res)=>{
+      res.render("club_update_form.hbs")
+    });
 
-// End Points
-app.use('/club', clubRouter);
-app.get("/Club_form", (req, res) => {
-    res.render("club_form.hbs")
-});
-app.get("/", (req, res) => {
-    res.render("main.hbs")
-})
-app.listen(port, () => {
+//Scholership End Points
+  app.use('/scholership',scholershipRouter)
+  app.get('/s',(req,res)=>{
+    res.render('Scholership/s_index.hbs');
+  })
+   // Admin End Points
+  app.get('/Scholership_form',(req,res)=>{
+    res.render('Scholership/scholership_form.hbs')
+  })
+
+
+  app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });
