@@ -44,24 +44,24 @@ router.post('/add', upload.array('ClubImg', 10), (req, res, next) => {
 
     //required attributes
     var obj = {
-            ClubName: req.body.ClubName,
-            ClubDesc: req.body.ClubDesc,
-            ClubImg: [],
-            //   ClubMemberNames:[],
-            //   ClubMemberDesign:[],
-        }
-        //optional attributes
-    if (req.body.ClubWebsite != undefined) {
+      ClubName: req.body.ClubName,
+      ClubDesc: req.body.ClubDesc,
+      ClubImg:[],
+    //   ClubMemberNames:[],
+    //   ClubMemberDesign:[],
+    }
+    //optional attributes
+    if(req.body.ClubWebsite != undefined){
         obj.ClubWebsite = req.body.ClubWebsite;
     }
     if (req.body.ClubExtraContent != undefined) {
         obj.ClubExtraContent = req.body.ClubExtraContent;
     }
-    // // if(req.body.ClubMemberNames != undefined && req.body.ClubMemberNames.length != 0){
-    // // obj.ClubMemberNames = req.body.ClubMemberNames;
+    // if(req.body.ClubMemberNames != undefined && req.body.ClubMemberNames.length != 0){
+    //         obj.ClubMemberNames = req.body.ClubMemberNames;
     // }
-    // // if(req.body.ClubMemberDesign != undefined && req.body.ClubMemberDesign.length != 0){
-    // // obj.ClubMemberDesign = req.body.ClubMemberDesign;
+    // if(req.body.ClubMemberDesign != undefined && req.body.ClubMemberDesign.length != 0){
+    //         obj.ClubMemberDesign = req.body.ClubMemberDesign;
     // }
 
     for (let i = 0; i < req.files.length; i++) {
@@ -78,7 +78,24 @@ router.post('/add', upload.array('ClubImg', 10), (req, res, next) => {
         }
     });
 
-});
+  })
+
+  router.post('/Update',(req,res)=>{
+
+    const data=req.body;
+    // console.log("Come in:",req.body)
+    ClubModel.updateMany({"ClubName":data.ClubName},
+        {$set:{'ClubWebsite':data.ClubWebsite,'ClubDesc':data.ClubDesc,
+        'ClubExtraContent':data.ClubExtraContent }}, function (err, item) {
+            if (err) {
+                console.log(err);
+                res.send('Error!');
+            }
+            else {
+              
+                res.send('club Updated successfully!');
+            }
+        });
 
   router.post('/Update',(req,res)=>{
 

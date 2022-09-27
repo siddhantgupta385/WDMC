@@ -27,7 +27,8 @@
       <h1>Scholership Details</h1>
       <div class="mb-3">
         <label for="exampleInputCName" class="form-label">Scholership Name: </label>
-        <input name="Name" type="text" class="form-control" id="exampleInputCName" aria-describedby="emailHelp" required>
+        <input name="Name" type="text" class="form-control" id="exampleInputCName" aria-describedby="emailHelp"
+          required>
       </div>
       <div>
         Content:
@@ -71,17 +72,18 @@
         .then(data => {
           if (data[0] != undefined) {
             CKEDITOR.instances.content.insertHtml(data[0].Content);
-            document.getElementById('exampleInputCName').value = data[0].name;
-          }});
+            document.getElementById('exampleInputCName').value = data[0].Name;
+          }
+        });
     }
   });
-  document.getElementById("myform").onkeypress = function(e) {
-    var key = e.charCode || e.keyCode || 0;     
+  document.getElementById("myform").onkeypress = function (e) {
+    var key = e.charCode || e.keyCode || 0;
     if (key == 13) {
-       
+
       e.preventDefault();
     }
-  } 
+  }
 
 </script>
 
