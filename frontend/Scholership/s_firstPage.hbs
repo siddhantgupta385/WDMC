@@ -12,20 +12,37 @@
      <div>
     {{> header}}
   <br><br><br><br><br><br><br></div>
-    <div class="container" id="content"></div>
+
+    <div class="container" >
+      
+        <ol type="1" id="list">
+
+        </ol>
+    </div>
+
      <div style="bottom: 0; width:100%">
       {{> footer}}
     </div>
 </body>
 
 <script>
-     const link = `http://localhost:8080/scholership/get/{{name}}`;
+     const link = `http://localhost:8080/scholership/get`;
     console.log(link)
     fetch(link)
     .then(response => response.json())
     .then(data => {    
-let element=document.getElementById('content');
-    element.innerHTML=data[0].Content;
+    const list_el=document.getElementById('list');
+    console.log(data);
+    for(let i=0;i<data.length;i++){
+
+     let li = document.createElement("li");
+     const club_name = document.createElement("a");
+     club_name.href = "scholership/" + data[i].Name;
+     club_name.innerHTML = data[i].Name;
+     li.appendChild(club_name);
+     list_el.appendChild(li);
+    }
+    
     })
 
 

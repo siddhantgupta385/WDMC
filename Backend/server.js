@@ -45,6 +45,7 @@ const partialsPath = path.join(__dirname, "../frontend/partials");
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, '../frontend/'));
 app.use(express.static(path.join(__dirname, "../frontend/")));
+app.use(express.static("../frontend/img"));
 hbs.registerPartials(partialsPath)
 
 
@@ -70,8 +71,8 @@ Handlebars.registerHelper('ifNotEquals', function(arg1, arg2, options) {
 
 //Scholership End Points
   app.use('/scholership',scholershipRouter)
-  app.get('/s',(req,res)=>{
-    res.render('Scholership/s_index.hbs');
+  app.get('/scholership_main',(req,res)=>{
+    res.render('Scholership/s_firstPage.hbs');
   })
    // Admin End Points
   app.get('/Scholership_form',(req,res)=>{

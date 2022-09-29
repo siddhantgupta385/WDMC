@@ -1,6 +1,12 @@
 const router = require('express').Router();
 
 let ScholershipModel = require('../models/scholership_model');
+router.get('/get', (req, res) => {
+    ScholershipModel.find()
+        .then(scholership => res.json(scholership))
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.get('/get/:scholership_name',(req, res) => {
     const scholership_name = req.params.scholership_name
     console.log(scholership_name)
