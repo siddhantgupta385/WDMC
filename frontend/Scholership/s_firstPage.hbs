@@ -9,17 +9,50 @@
     
 </head>
 <body>
-     <div>
+    <div>
     {{> header}}
   <br><br><br><br><br><br><br></div>
+        <br>
+          <br>
+          <div class="flex items-center justify-start space-x-6">
+          <h1 class="uppercase text-4xl font-semibold text-accent" style="padding-left:9% ;">
+            Scholarships <span class="text-dark-purple"></span>
+          </h1>
+          <span class="material-symbols-outlined" style="font-size: 40px ; color: var(--accent);">
+            feed
+          </span>
+        </div>
+        <br>
+          <br>
+    <div class="container" id="cards" >
+            <div id="card">
+              <div
+                class="flex flex-col overflow-hidden rounded-xl  bg-light-purple shadow-xl border-t-4 border-b-4 border-accent w-60" style="width: 100%;">
+                <div class="flex h-full w-full flex-col p-2.5">
+                 
+                  <div class="flex flex-col space-y-5 p-4">
+                   <p>
+                    
+                     <ol type="1" id="list" style="color:#B22222">
 
-    <div class="container" >
-      
-        <ol type="1" id="list">
-
-        </ol>
-    </div>
-
+                    </ol>
+                   </p>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+         
+            
+            
+            
+          </div>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
      <div style="bottom: 0; width:100%">
       {{> footer}}
     </div>
