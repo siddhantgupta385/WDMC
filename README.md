@@ -1,3 +1,6 @@
+-health and wellness
+
+
 Go to backend directory and run "npm install"
 to install the dependancies and node_module folder wil be installed in your backend directory
 

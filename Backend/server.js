@@ -7,7 +7,7 @@ var path = require('path');
 const handlebars = require("express-handlebars");
 const clubRouter = require('./routes/Club.js');
 
-const scholershipRouter=require('./routes/Scholership.js')
+const scholershipRouter = require('./routes/Scholership.js')
 require('dotenv').config();
 const hbs = require('hbs')
 
@@ -17,10 +17,9 @@ const port = process.env.PORT || 8080;
 app.use(cors());
 app.use(express.json());
 
-
 // mongo db connection
 const uri = process.env.ATLAS_URI;
- 
+
 mongoose.connect(uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -33,7 +32,6 @@ connection.once('open', () => {
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
 
 // Setting Handlebars for frontend 
 app.engine('hbs', handlebars.engine({
@@ -53,33 +51,35 @@ Handlebars.registerHelper('ifNotEquals', function(arg1, arg2, options) {
     return (arg1 != arg2) ? options.fn(this) : options.inverse(this);
 });
 
-                  /*  END POINTS */
+/*  END POINTS */
 // Clubs End Points
-    app.use('/club', clubRouter);
-    app.get("/", (req, res) =>{
-      res.render("main.hbs")
-    })
- 
-    
-    // Admin End Points
-    app.get("/Club_form",(req,res)=>{
-      res.render("club_form.hbs")
-    });
-    app.get("/Club_update_form",(req,res)=>{
-      res.render("club_update_form.hbs")
-    });
+app.use('/club', clubRouter);
+
+app.get("/", (req, res) => {
+    console.log("i am here ")
+    res.render("main.hbs")
+})
+
+// Admin End Points
+app.get("/Club_form", (req, res) => {
+    res.render("club_form.hbs")
+});
+app.get("/Club_update_form", (req, res) => {
+    res.render("club_update_form.hbs")
+});
 
 //Scholership End Points
-  app.use('/scholership',scholershipRouter)
-  app.get('/scholership_main',(req,res)=>{
+app.use('/scholership', scholershipRouter)
+app.get('/scholership_main', (req, res) => {
     res.render('Scholership/s_firstPage.hbs');
-  })
-   // Admin End Points
-  app.get('/Scholership_form',(req,res)=>{
+})
+
+// Admin End Points
+app.get('/Scholership_form', (req, res) => {
     res.render('Scholership/scholership_form.hbs')
-  })
+})
 
 
-  app.listen(port, () => {
+app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
 });
