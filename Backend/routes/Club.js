@@ -87,18 +87,18 @@ router.post('/add', upload.array('ClubImg', 10), (req, res, next) => {
 
     const data=req.body;
     // console.log("Come in:",req.body)
-    ClubModel.updateMany({"ClubName":data.ClubName},
-        {$set:{'ClubWebsite':data.ClubWebsite,'ClubDesc':data.ClubDesc,
-        'ClubExtraContent':data.ClubExtraContent }}, function (err, item) {
-            if (err) {
-                console.log(err);
-                res.send('Error!');
-            }
-            else {
-              
-                res.send('club Updated successfully!');
-            }
-        });
+        ClubModel.updateMany({"ClubName":data.ClubName},
+            {$set:{'ClubWebsite':data.ClubWebsite,'ClubDesc':data.ClubDesc,
+            'ClubExtraContent':data.ClubExtraContent }}, function (err, item) {
+                if (err) {
+                    console.log(err);
+                    res.send('Error!');
+                }
+                else {
+                
+                    res.send('club Updated successfully!');
+                }
+            });
 
   })
 

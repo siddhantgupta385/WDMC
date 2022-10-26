@@ -24,11 +24,7 @@ router.post('/Update',async (req,res)=>{
 
     const data=req.body;
     const vd= await ScholershipModel.findOne({Name:req.body.Name});
-    //  const data1=ScholershipModel.find({});
-    //  console.log(data1);
-    // console.log("Data is: ",data1._id)
-    // console.log("Come in:",req.body)
-    //console.log("Come out")
+ 
     if(vd!=null){
        // console.log("Come In",vd)
     ScholershipModel.updateMany({"_id":vd._id},
