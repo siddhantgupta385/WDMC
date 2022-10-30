@@ -7,7 +7,7 @@ var path = require('path');
 const handlebars = require("express-handlebars");
 const clubRouter = require('./routes/Club.js');
 
-const scholershipRouter = require('./routes/Scholership.js')
+const scholershipRouter=require('./routes/Scholership.js')
 require('dotenv').config();
 const hbs = require('hbs')
 
@@ -25,10 +25,10 @@ mongoose.connect(uri, {
     useUnifiedTopology: true
 });
 
-const connection = mongoose.connection;
-connection.once('open', () => {
-    console.log("MongoDB database connection established successfully");
-})
+    const connection = mongoose.connection;
+    connection.once('open', () => {
+      console.log("MongoDB database connection established successfully");
+    })
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())

@@ -70,6 +70,14 @@
 <div></div>
 <script>
   CKEDITOR.replace('ClubExtraContent',{
+     script: true,
+        $1: {
+            // This will set the default set of elements
+            elements: CKEDITOR.dtd,
+            attributes: true,
+            styles: true,
+            classes: true
+        }
      fullPage: true,
      allowedContent: true,
     autoGrow_onStartup: true,
