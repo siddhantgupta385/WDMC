@@ -113,9 +113,19 @@
 
       if (data[0].ClubExtraContent != undefined)
         document.getElementById("club_desc").innerHTML = data[0].ClubDesc;
+         
+        if(data[0].ClubExtraContent!=undefined)
+          document.getElementById("extra_content").innerHTML = data[0].ClubExtraContent;
+        
+        const head_details=document.getElementById("Head_Details");
 
-      if (data[0].ClubExtraContent != undefined)
-        document.getElementById("extra_content").innerHTML = data[0].ClubExtraContent;
+        for(let i=0;i<data[0].ClubMemberNames.length;i++){
+
+          const details="Memebr Name: "+data[0].ClubMemberNames[i]+ " <br> Memebr Design: "+data[0].ClubMemberDesign[i];
+          const new_detail_div=document.createElement("div");
+          new_detail_div.innerHTML=details;
+          head_details.appendChild(new_detail_div);
+        }
 
       const img_pos = document.getElementById("clubImg");
 

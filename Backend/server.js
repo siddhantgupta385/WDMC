@@ -12,7 +12,7 @@ require('dotenv').config();
 const hbs = require('hbs')
 
 const app = express();
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 6000;
 
 app.use(cors());
 app.use(express.json());
@@ -20,17 +20,17 @@ app.use(express.json());
 // mongo db connection
 const uri = process.env.ATLAS_URI;
 
-mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+    mongoose.connect(uri, { 
+      useNewUrlParser: true, 
+      useUnifiedTopology: true }
+    );
 
     const connection = mongoose.connection;
     connection.once('open', () => {
       console.log("MongoDB database connection established successfully");
     })
-
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded())
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
 // Setting Handlebars for frontend 
